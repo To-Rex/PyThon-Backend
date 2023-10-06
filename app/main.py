@@ -2,7 +2,7 @@ import asyncio
 from fastapi import FastAPI, Depends, status, Response
 from sqlalchemy import text
 from controllers.connect_db import SessionLocal, engine
-from models.contacts_model import ContactList
+from models.contacts_model import ContactList, userData
 from models.response import Res
 from controllers.requests import success_response, error_response, not_found_response, bad_request_response, \
     forbidden_response, internal_server_error_response
@@ -50,21 +50,15 @@ def send_email(email, title, body, data):
 
     return resp
 
-# {
-#     "access_token": "accessToken",
-#     "id_token": "idToken",
-#     "ids": "ids",
-#     "phone": "+998995340313",
-#     "email": "email",
-#     "password": "1234",
-#     "name": "displayName",
-#     "photo_url": "photoUrl",
-#     "role": "users",
-#     "region": "region",
-#     "device": "android",
-#     "created_at": "2023-07-15 00:29:30",
-#     "updated_at": "2023-07-15 12:29:40"
-# }
+
+@app.post("/users/", response_model=Res)
+async def add_user(user: userData):
+    if not user:
+        return error_response("No email provided")
+    try:
+        return success_response(user.name)
+    except Exception as e:
+        return error_response(str(e))
 
 
 @app.post("/contacts", response_model=Res)

@@ -1,10 +1,10 @@
 from typing import Union
 
 from pydantic import BaseModel
-from models.contacts_model import ContactList
+from models.contacts_model import ContactList, userData
 
 
 class Res(BaseModel):
     status: str
     message: str
-    data: Union[ContactList, str, int, float, bool, None]
+    data: Union[ContactList, userData, str, int, float, bool, None]
