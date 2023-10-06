@@ -4,7 +4,7 @@ from controllers.connect_db import Base
 
 
 class Contacts(Base):
-    __tablename__ = 'contacts'
+    __tablename__ = "contacts"
 
     id = Column(Integer, primary_key=True, index=True)
     display_name = Column(String, index=True)
