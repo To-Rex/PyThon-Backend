@@ -1,8 +1,9 @@
 import asyncio
+import jwt, bcrypt, datetime
 from fastapi import FastAPI, Depends, status, Response
 from sqlalchemy import text
 from controllers.connect_db import SessionLocal, engine
-from models.contacts_model import ContactList, userData
+from models.contacts_model import ContactList, userData, userLogin
 from models.response import Res
 from controllers.requests import success_response, error_response, not_found_response, bad_request_response, \
     forbidden_response, internal_server_error_response
@@ -15,6 +16,7 @@ app = FastAPI()
 
 
 client = Courier(auth_token="pk_prod_J06Z6Y462V4ZD5Q382ST5EEGMVSF")
+
 
 def send_email(email, title, body, data):
     resp = client.send_message(
@@ -35,14 +37,56 @@ def send_email(email, title, body, data):
     return resp
 
 
+def generateToken(email):
+    payload = {
+        'email': email,
+        'exp': datetime.datetime.utcnow() + datetime.timedelta(days=0, minutes=30),
+        'iat': datetime.datetime.utcnow(),
+    }
+    return jwt.encode(payload, 'secret', algorithm='HS256')
+
+
+def PasswordHash(password):
+    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+
+
+def PasswordCheck(provided_password, hashed_password):
+    return bcrypt.checkpw(provided_password.encode('utf-8'), hashed_password)
+
+
 @app.post("/user", response_model=Res)
 async def add_user(user: userData):
-    user.blocked = False
-    try:
-        return success_response(user)
-    except Exception as e:
-        return error_response(str(e))
+    connection = engine.connect()
+    sql = text('SELECT * FROM users WHERE email = :email OR phone = :phone')
+    result = connection.execute(sql, email=user.email, phone=user.phone)
+    user.updated_at = datetime.datetime.now()
+    user.token = generateToken(user.email)
+    if result.rowcount > 0:
+        sql = text('UPDATE users SET updated_at = :updated_at, token = :token WHERE email = :email OR phone = :phone')
+        connection.execute(sql, updated_at=user.updated_at, token=user.token, email=user.email, phone=user.phone)
+        connection.close()
+        return success_response(user.token)
+    else:
+        user.blocked = False
+        user.password = PasswordHash(user.password)
+        user.created_at = user.updated_at
+        # user not exists
+        sql = text(
+            'INSERT INTO users (access_token, id_token, ids, phone, email, password, name, photo_url, blocked, role, region, device, created_at, updated_at, token) VALUES (:access_token, :id_token, :ids, :phone, :email, :password, :name, :photo_url, :blocked, :role, :region, :device, :created_at, :updated_at, :token)')
+        connection.execute(sql, access_token=user.access_token, id_token=user.id_token, ids=user.ids, phone=user.phone,
+                           email=user.email, password=user.password, name=user.name, photo_url=user.photo_url,
+                           blocked=user.blocked, role=user.role, region=user.region, device=user.device,
+                           created_at=user.created_at, updated_at=user.updated_at, token=user.token)
+        connection.close()
+        return success_response(user.token)
 
+
+@app.post("/user/login", response_model=Res)
+async def login_user(login: userLogin):
+    if not login.email:
+        return error_response("Email is required")
+    if not login.password:
+        return error_response("Password is required")
 
 
 @app.post("/contacts", response_model=Res)
