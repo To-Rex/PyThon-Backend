@@ -15,7 +15,7 @@ from models.test import Contacts
 #     ]
 # }
 
-class Response(BaseModel):
+class Res(BaseModel):
     status: str
     message: str
     data: Union[ContactList, str, int, float, bool, None]
