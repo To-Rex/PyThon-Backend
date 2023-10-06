@@ -16,22 +16,6 @@ app = FastAPI()
 
 client = Courier(auth_token="pk_prod_J06Z6Y462V4ZD5Q382ST5EEGMVSF")
 
-
-# resp = client.send_message(
-#     message={
-#         "to": {
-#             "email": "torex.amaki@gmail.com"
-#         },
-#         "content": {
-#             "title": "Welcome to Courier!",
-#             "body": "Want to hear a joke? {{joke}}"
-#         },
-#         "data": {
-#             "joke": "Why does Python live on land? Because it is above C level"
-#         }
-#     }
-# )
-
 def send_email(email, title, body, data):
     resp = client.send_message(
         message={
@@ -51,14 +35,14 @@ def send_email(email, title, body, data):
     return resp
 
 
-@app.post("/users/", response_model=Res)
+@app.post("/user", response_model=Res)
 async def add_user(user: userData):
-    if not user:
-        return error_response("No email provided")
+    
     try:
-        return success_response(user.name)
+        return success_response(user)
     except Exception as e:
         return error_response(str(e))
+
 
 
 @app.post("/contacts", response_model=Res)
