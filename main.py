@@ -141,14 +141,11 @@ async def clear_db():
     sql = text('DELETE FROM contacts')
     size = connection.execute(sql)
     connection.execute(sql)
-    # clear data in users table
     sql = text('DELETE FROM users')
-    size = connection.execute(sql)
     connection.execute(sql)
-
     connection.close()
     # return element size
-    return success_response(size.rowcount)
+    return success_response(size.rowcount + " rows deleted")
 
 
 @app.get("/hello/{name}")
