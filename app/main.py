@@ -7,8 +7,64 @@ from models.response import Res
 from controllers.requests import success_response, error_response, not_found_response, bad_request_response, \
     forbidden_response, internal_server_error_response
 from models.table_models import Contacts
+from trycourier import Courier
 
 app = FastAPI()
+
+# Install Courier SDK: pip install trycourier
+
+
+client = Courier(auth_token="pk_prod_J06Z6Y462V4ZD5Q382ST5EEGMVSF")
+
+
+# resp = client.send_message(
+#     message={
+#         "to": {
+#             "email": "torex.amaki@gmail.com"
+#         },
+#         "content": {
+#             "title": "Welcome to Courier!",
+#             "body": "Want to hear a joke? {{joke}}"
+#         },
+#         "data": {
+#             "joke": "Why does Python live on land? Because it is above C level"
+#         }
+#     }
+# )
+
+def send_email(email, title, body, data):
+    resp = client.send_message(
+        message={
+            "to": {
+                "email": email
+            },
+            "content": {
+                "title": title,
+                "body": body
+            },
+            "data": {
+                "joke": data
+            }
+        }
+    )
+
+    return resp
+
+# {
+#     "access_token": "accessToken",
+#     "id_token": "idToken",
+#     "ids": "ids",
+#     "phone": "+998995340313",
+#     "email": "email",
+#     "password": "1234",
+#     "name": "displayName",
+#     "photo_url": "photoUrl",
+#     "role": "users",
+#     "region": "region",
+#     "device": "android",
+#     "created_at": "2023-07-15 00:29:30",
+#     "updated_at": "2023-07-15 12:29:40"
+# }
 
 
 @app.post("/contacts", response_model=Res)

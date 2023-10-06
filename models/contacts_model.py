@@ -23,3 +23,26 @@ class Contact(BaseModel):
 
 class ContactList(BaseModel):
     contacts: List[Contact]
+
+
+class userData(BaseModel):
+    access_token: str
+    id_token: str
+    ids: str
+    phone: str
+    email: str
+    password: str
+    name: str
+    photo_url: str
+    blocked: str
+    role: str
+    region: str
+    device: str
+    created_at: str
+    updated_at: str
+    token: str
+
+
+class userLogin(BaseModel):
+    email: str
+    password: str
