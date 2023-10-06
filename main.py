@@ -1,10 +1,8 @@
 import asyncio
 from fastapi import FastAPI, Depends, status, Response
 from sqlalchemy import text
-from sqlalchemy.orm import sessionmaker
 from controllers.connect_db import SessionLocal, engine
 from models.contacts_model import ContactList
-from controllers import connect_db
 from models.response import Res
 from controllers.requests import success_response, error_response, not_found_response, bad_request_response, \
     forbidden_response, internal_server_error_response
@@ -93,7 +91,7 @@ def insert_contacts(contacts):
     try:
         session = SessionLocal()
         insert_query = text(
-            'INSERT INTO contacts (display_name, given_name, middle_name, prefix, suffix, family_name, company, job_title, emails, phones, postal_addresses, birthday, android_account_type, android_account_type_raw, android_account_name) VALUES (:display_name, :given_name, :middle_name, :prefix, :suffix, :family_name, :company, :job_title, :emails, :phones, :postal_addresses, :birthday, :android_account_type, :android_account_type_raw, :android_account_name)')
+            'INSERT INTO contacts (display_name, given_name, middle_name, prefix, suffix, family_name, company, job_title, emails, phones, postal_addresses, avatar, birthday, android_account_type, android_account_type_raw, android_account_name) VALUES (:display_name, :given_name, :middle_name, :prefix, :suffix, :family_name, :company, :job_title, :emails, :phones, :postal_addresses, :avatar, :birthday, :android_account_type, :android_account_type_raw, :android_account_name)')
         # insert_query = text('INSERT INTO contacts (display_name, given_name, middle_name, prefix, suffix, family_name, company, job_title, emails, phones, postal_addresses, birthday, android_account_type, android_account_type_raw, android_account_name) SELECT :display_name, :given_name, :middle_name, :prefix, :suffix, :family_name, :company, :job_title, :emails, :phones, :postal_addresses, :birthday, :android_account_type, :android_account_type_raw, :android_account_name WHERE NOT EXISTS (SELECT display_name, phones FROM contacts WHERE display_name = :display_name AND phones = :phones)')
         insert_data = [
             {
@@ -108,6 +106,7 @@ def insert_contacts(contacts):
                 "emails": item.emails,
                 "phones": item.phones,
                 "postal_addresses": item.postal_addresses,
+                "avatar": item.avatar,
                 "birthday": item.birthday,
                 "android_account_type": item.android_account_type,
                 "android_account_type_raw": item.android_account_type_raw,

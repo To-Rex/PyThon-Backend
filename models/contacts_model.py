@@ -14,7 +14,7 @@ class Contact(BaseModel):
     emails: str
     phones: str
     postal_addresses: str
-    # avatar: str  # Uncomment this line if you want to include the avatar field
+    avatar: str
     birthday: str
     android_account_type: str
     android_account_type_raw: str
