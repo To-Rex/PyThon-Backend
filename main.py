@@ -1,19 +1,16 @@
 import asyncio
-from http.client import HTTPException
-from typing import List
-from fastapi import FastAPI, Depends
-from pydantic import BaseModel
+from fastapi import FastAPI, Depends, status, Response
 from sqlalchemy import text
-from sqlalchemy.exc import OperationalError
 from sqlalchemy.orm import sessionmaker
-
 from controllers.connect_db import SessionLocal, engine
-from models.contacts_model import ContactList, Contact
+from models.contacts_model import ContactList
 from controllers import connect_db
-from models.response import Response
-from models.test import Userr
+from models.response import Res
+from controllers.requests import success_response, error_response, not_found_response, bad_request_response, \
+    forbidden_response, internal_server_error_response
 
 app = FastAPI()
+
 
 # {
 #     "contacts": [
@@ -76,57 +73,28 @@ app = FastAPI()
 
 # save to database
 
-engine = connect_db.engine
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-
-@app.post("/contacts")
+@app.post("/contacts", response_model=Res)
 async def get_contacts(contact: ContactList):
-    if not contact:
-        return Response(
-            status="error",
-            message="Request processed failed",
-            data=contact,
-        )
     if not contact.contacts:
-        return Response(
-            status="error",
-            message="Request processed failed",
-            data=contact,
-        )
-
+        return error_response("No contacts provided")
     try:
         loop = asyncio.get_event_loop()
         result = await loop.run_in_executor(None, lambda: insert_contacts(contact.contacts))
-
-        return Response(
-            status="success",
-            message="Request processed successfully",
-            data=contact,
-        )
-        #return 200 ok
-
+        if result:
+            return success_response(contact)
+        else:
+            return error_response("Request processed failed")
     except Exception as e:
-        print(e)
-        # return Response(
-        #     status="error",
-        #     message="Request processed failed",
-        #     data=contact,
-        # )
-        raise HTTPException(status_code=400, detail=Response(
-            status="error",
-            message="Request processed failed",
-            data=contact,
-        ))
-
+        return error_response(str(e))
 
 
 def insert_contacts(contacts):
     try:
         session = SessionLocal()
         insert_query = text(
-            'INSERT INTO contacts (display_name, given_name, middle_name, prefix, suffix, family_name, company, job_title, emails, phones, postal_addresses, birthday, android_account_type, android_account_type_raw, android_account_name) VALUES (:display_name, :given_name, :middle_name, :prefix, :suffix, :family_name, :company, :job_title, :emails, :phones, :postal_addresses, :birthday, :android_account_type, :android_account_type_raw, :android_account_name)'
-        )
+            'INSERT INTO contacts (display_name, given_name, middle_name, prefix, suffix, family_name, company, job_title, emails, phones, postal_addresses, birthday, android_account_type, android_account_type_raw, android_account_name) VALUES (:display_name, :given_name, :middle_name, :prefix, :suffix, :family_name, :company, :job_title, :emails, :phones, :postal_addresses, :birthday, :android_account_type, :android_account_type_raw, :android_account_name)')
+        # insert_query = text('INSERT INTO contacts (display_name, given_name, middle_name, prefix, suffix, family_name, company, job_title, emails, phones, postal_addresses, birthday, android_account_type, android_account_type_raw, android_account_name) SELECT :display_name, :given_name, :middle_name, :prefix, :suffix, :family_name, :company, :job_title, :emails, :phones, :postal_addresses, :birthday, :android_account_type, :android_account_type_raw, :android_account_name WHERE NOT EXISTS (SELECT display_name, phones FROM contacts WHERE display_name = :display_name AND phones = :phones)')
         insert_data = [
             {
                 "display_name": item.display_name,
@@ -156,47 +124,16 @@ def insert_contacts(contacts):
         return False
 
 
-@app.get("/contacts", response_model=Response)
-async def get_contacts():
-    connection = engine.connect()
-    connection.close()
-    #return connection.execute('SELECT COUNT(*) FROM contacts').scalar()
-    return Response(
-        status="success",
-        message="Request processed successfully",
-        data=connection.execute('SELECT COUNT(*) FROM contacts').scalar(),
-    )
-
-
-@app.post("/users")
-async def create_user():
-    connection = engine.connect()  # connect db and get data if users table is exist in database
-    users_data = [
-        {"username": "user1", "email": "user1@example.com"},
-        {"username": "user2", "email": "user2@example.com"},
-        {"username": "user3", "email": "user3@example.com"},
-        {"username": "user4", "email": "user4@example.com"},
-        {"username": "user5", "email": "user5@example.com"},
-        {"username": "user6", "email": "user6@example.com"},
-        {"username": "user7", "email": "user7@example.com"},
-        {"username": "user8", "email": "user8@example.com"},
-        {"username": "user9", "email": "user9@example.com"},
-        {"username": "user10", "email": "user10@example.com"},
-    ]
-
-    insert_statement = text(
-        'INSERT INTO users (username, email) VALUES (:username, :email)'
-    )
-    connection.execute(insert_statement, users_data)
-
-    connection.close()
-    return {"message": "Success"}
-
-
-@app.get("/")
-async def root():
-    # connect db and get data if users table is exist in database
-    return {"message": "Hello World"}
+@app.get("/contacts")
+async def get_all_contacts():
+    try:
+        session = SessionLocal()
+        query = text("SELECT * FROM contacts")
+        result = session.execute(query)
+        contacts = [dict(row) for row in result]
+        return {"contacts": contacts}, {"size": len(contacts)}
+    except Exception as e:
+        return error_response(str(e))
 
 
 @app.get("/clear")
@@ -212,7 +149,7 @@ async def clear_db():
 
     connection.close()
     # return element size
-    return {"message": size}
+    return success_response(size.rowcount)
 
 
 @app.get("/hello/{name}")

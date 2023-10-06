@@ -18,6 +18,7 @@ class Contacts(Base):
     emails = Column(String)
     phones = Column(String)
     postal_addresses = Column(String)
+    avatar = Column(String)
     birthday = Column(String)
     android_account_type = Column(String)
     android_account_type_raw = Column(String)
@@ -45,9 +46,3 @@ class User(Base):
     token = Column(String)
 
 
-class Userr(Base):
-    __tablename__ = "user"
-
-    id = Column(Integer, primary_key=True, index=True)
-    username = Column(String, unique=True, index=True)
-    email = Column(String, unique=True, index=True)
