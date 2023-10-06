@@ -37,7 +37,7 @@ def send_email(email, title, body, data):
 
 @app.post("/user", response_model=Res)
 async def add_user(user: userData):
-    
+    user.blocked = False
     try:
         return success_response(user)
     except Exception as e:

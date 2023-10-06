@@ -34,7 +34,7 @@ class userData(BaseModel):
     password: str = None
     name: str = None
     photo_url: str = None
-    blocked: str = None
+    blocked: bool = None
     role: str = None
     region: str = None
     device: str = None
