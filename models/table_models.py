@@ -25,7 +25,7 @@ class Contacts(Base):
     android_account_name = Column(String)
 
 
-class User(Base):
+class Users(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
