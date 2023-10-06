@@ -10,6 +10,7 @@ from sqlalchemy.orm import sessionmaker
 from controllers.connect_db import SessionLocal, engine
 from models.contacts_model import ContactList, Contact
 from controllers import connect_db
+from models.response import Response
 from models.test import Userr
 
 app = FastAPI()
@@ -79,53 +80,92 @@ engine = connect_db.engine
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
-@app.post("/contacts", response_model=ContactList)
-async def create_contacts(contact: ContactList):
+@app.post("/contacts")
+async def get_contacts(contact: ContactList):
+    if not contact:
+        return Response(
+            status="error",
+            message="Request processed failed",
+            data=contact,
+        )
+    if not contact.contacts:
+        return Response(
+            status="error",
+            message="Request processed failed",
+            data=contact,
+        )
+
     try:
-        with SessionLocal() as session:
-            result = insert_contacts(session, contact.contacts)
-            return contact if result else {"message": "Error"}
+        loop = asyncio.get_event_loop()
+        result = await loop.run_in_executor(None, lambda: insert_contacts(contact.contacts))
+
+        return Response(
+            status="success",
+            message="Request processed successfully",
+            data=contact,
+        )
+        #return 200 ok
+
     except Exception as e:
         print(e)
-        return {"message": "Error"}
+        # return Response(
+        #     status="error",
+        #     message="Request processed failed",
+        #     data=contact,
+        # )
+        raise HTTPException(status_code=400, detail=Response(
+            status="error",
+            message="Request processed failed",
+            data=contact,
+        ))
 
 
-def insert_contacts(session, contacts):
+
+def insert_contacts(contacts):
     try:
+        session = SessionLocal()
         insert_query = text(
             'INSERT INTO contacts (display_name, given_name, middle_name, prefix, suffix, family_name, company, job_title, emails, phones, postal_addresses, birthday, android_account_type, android_account_type_raw, android_account_name) VALUES (:display_name, :given_name, :middle_name, :prefix, :suffix, :family_name, :company, :job_title, :emails, :phones, :postal_addresses, :birthday, :android_account_type, :android_account_type_raw, :android_account_name)'
         )
         insert_data = [
             {
-                **{key: getattr(item, key) for key in item.__dict__.keys() if not key.startswith("_")},
+                "display_name": item.display_name,
+                "given_name": item.given_name,
+                "middle_name": item.middle_name,
+                "prefix": item.prefix,
+                "suffix": item.suffix,
+                "family_name": item.family_name,
+                "company": item.company,
+                "job_title": item.job_title,
+                "emails": item.emails,
+                "phones": item.phones,
+                "postal_addresses": item.postal_addresses,
+                "birthday": item.birthday,
+                "android_account_type": item.android_account_type,
+                "android_account_type_raw": item.android_account_type_raw,
+                "android_account_name": item.android_account_name,
             }
             for item in contacts
         ]
         session.execute(insert_query, insert_data)
         session.commit()
+
         return True
     except Exception as e:
         print(e)
         return False
 
 
-@app.get("/contacts")
+@app.get("/contacts", response_model=Response)
 async def get_contacts():
     connection = engine.connect()
-    sql = text('SELECT * FROM contacts')
-    result = connection.execute(sql)
-    contacts = []
-    size = 0
-    for row in result:
-        contact = Contact(display_name=row[1], given_name=row[2], middle_name=row[3], prefix=row[4], suffix=row[5],
-                          family_name=row[6], company=row[7], job_title=row[8], emails=row[9], phones=row[10],
-                          postal_addresses=row[11], birthday=row[12], android_account_type=row[13],
-                          android_account_type_raw=row[14], android_account_name=row[15])
-        size += 1
-        contacts.append(contact)
     connection.close()
-
-    return {size}
+    #return connection.execute('SELECT COUNT(*) FROM contacts').scalar()
+    return Response(
+        status="success",
+        message="Request processed successfully",
+        data=connection.execute('SELECT COUNT(*) FROM contacts').scalar(),
+    )
 
 
 @app.post("/users")
