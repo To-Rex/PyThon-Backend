@@ -12,7 +12,7 @@ app = FastAPI()
 
 
 @app.post("/contacts", response_model=Res)
-async def get_contacts(contact: ContactList):
+async def add_contacts(contact: ContactList):
     if not contact.contacts:
         return error_response("No contacts provided")
     try:
