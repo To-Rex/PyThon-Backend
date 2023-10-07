@@ -1,5 +1,5 @@
 import asyncio
-import jwt, bcrypt, datetime
+import jwt, datetime
 from fastapi import FastAPI, Depends, status, Response
 from sqlalchemy import text
 from controllers.connect_db import SessionLocal, engine
@@ -9,6 +9,7 @@ from controllers.requests import success_response, error_response, not_found_res
     forbidden_response, internal_server_error_response
 from models.table_models import Contacts
 from trycourier import Courier
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = FastAPI()
 
@@ -47,11 +48,11 @@ def generateToken(email):
 
 
 def PasswordHash(password):
-    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+    return generate_password_hash(password)
 
 
 def PasswordCheck(provided_password, hashed_password):
-    return bcrypt.checkpw(provided_password.encode('utf-8'), hashed_password)
+    return check_password_hash(hashed_password, provided_password)
 
 
 @app.post("/user", response_model=Res)
@@ -87,6 +88,26 @@ async def login_user(login: userLogin):
         return error_response("Email is required")
     if not login.password:
         return error_response("Password is required")
+    try:
+        connection = engine.connect()
+        sql = text('SELECT * FROM users WHERE email = :email')
+        result = connection.execute(sql, email=login.email)
+        if result.rowcount > 0:
+            user = dict(result.fetchone())
+            if PasswordCheck(login.password, user['password']):
+                user['token'] = generateToken(user['email'])
+                sql = text('UPDATE users SET token = :token WHERE email = :email')
+                connection.execute(sql, token=user['token'], email=user['email'])
+                connection.close()
+                return success_response(user['token'])
+            else:
+                connection.close()
+                return error_response("Invalid password")
+        else:
+            connection.close()
+            return error_response("User not found")
+    except Exception as e:
+        return error_response(str(e))
 
 
 @app.post("/contacts", response_model=Res)
