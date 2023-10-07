@@ -64,11 +64,12 @@ def verifyUserToken(token: str = Header(None)):
     verifyToken(token, SECRET_KEY)
     return None
 
+
 def generateToken(payload, secret_key, expiration_minutes=30):
     expiration_time = datetime.datetime.utcnow() + datetime.timedelta(minutes=expiration_minutes)
     token = jwt.encode({
-            "exp": expiration_time,
-            **payload},
+        "exp": expiration_time,
+        **payload},
         secret_key,
         algorithm="HS256"
     )
