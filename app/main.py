@@ -1,20 +1,23 @@
-import asyncio
-import jwt, datetime
-from fastapi import FastAPI, Depends, status, Response
+import asyncio, datetime, jwt
+from http.client import HTTPException
+
+from fastapi import FastAPI, Depends, status, Response, Header, Security, requests
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer, OAuth2PasswordBearer
+from google.oauth2.id_token import verify_token
+from httpx import Auth
 from sqlalchemy import text
 from controllers.connect_db import SessionLocal, engine
-from models.contacts_model import ContactList, userData, userLogin
+from models.contacts_model import ContactList, userData, userLogin, TokenData
 from models.response import Res
 from controllers.requests import success_response, error_response, not_found_response, bad_request_response, \
-    forbidden_response, internal_server_error_response
+    forbidden_response, internal_server_error_response, unauthorized_response
 from models.table_models import Contacts
+from typing import Annotated, Union, Any
+
 from trycourier import Courier
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = FastAPI()
-
-# Install Courier SDK: pip install trycourier
-
 
 client = Courier(auth_token="pk_prod_J06Z6Y462V4ZD5Q382ST5EEGMVSF")
 
@@ -38,13 +41,39 @@ def send_email(email, title, body, data):
     return resp
 
 
-def generateToken(email):
-    payload = {
-        'email': email,
-        'exp': datetime.datetime.utcnow() + datetime.timedelta(days=0, minutes=30),
-        'iat': datetime.datetime.utcnow(),
-    }
-    return jwt.encode(payload, 'secret', algorithm='HS256')
+SECRET_KEY = "javainuse-secret-key"
+
+
+def verifyToken(token, secret_key, audience=None, issuer=None):
+    token = token.replace("Bearer ", "")
+    try:
+        payload = jwt.decode(token, secret_key, algorithms=["HS256"])
+        print("Token payload:", payload)
+    except jwt.ExpiredSignatureError:
+        return unauthorized_response("Token is expired")
+    except jwt.InvalidTokenError:
+        return unauthorized_response("Token is invalid")
+    except Exception as e:
+        return unauthorized_response(str(e))
+
+
+def verifyUserToken(token: str = Header(None)):
+    if not token:
+        return unauthorized_response("Token is required")
+
+    verifyToken(token, SECRET_KEY)
+    return None
+
+def generateToken(payload, secret_key, expiration_minutes=30):
+    expiration_time = datetime.datetime.utcnow() + datetime.timedelta(minutes=expiration_minutes)
+    token = jwt.encode({
+            "exp": expiration_time,
+            **payload},
+        secret_key,
+        algorithm="HS256"
+    )
+
+    return token
 
 
 def PasswordHash(password):
@@ -61,7 +90,7 @@ async def add_user(user: userData):
     sql = text('SELECT * FROM users WHERE email = :email OR phone = :phone')
     result = connection.execute(sql, email=user.email, phone=user.phone)
     user.updated_at = datetime.datetime.now()
-    user.token = generateToken(user.email)
+    user.token = generateToken({"email": user.email, "phone": user.phone}, SECRET_KEY)
     if result.rowcount > 0:
         sql = text('UPDATE users SET updated_at = :updated_at, token = :token WHERE email = :email OR phone = :phone')
         connection.execute(sql, updated_at=user.updated_at, token=user.token, email=user.email, phone=user.phone)
@@ -95,7 +124,7 @@ async def login_user(login: userLogin):
         if result.rowcount > 0:
             user = dict(result.fetchone())
             if PasswordCheck(login.password, user['password']):
-                user['token'] = generateToken(user['email'])
+                user['token'] = generateToken({"email": user['email'], "phone": user['phone']}, SECRET_KEY)
                 sql = text('UPDATE users SET token = :token WHERE email = :email')
                 connection.execute(sql, token=user['token'], email=user['email'])
                 connection.close()
@@ -161,8 +190,11 @@ def insert_contacts(contacts):
         return False
 
 
-@app.get("/contacts")
-async def get_all_contacts():
+@app.get("/contacts", )
+async def get_all_contacts(Authorization: str = Header(None)):
+    token = verifyUserToken(Authorization)
+    if token:
+        return token
     try:
         session = SessionLocal()
         query = text("SELECT * FROM contacts")

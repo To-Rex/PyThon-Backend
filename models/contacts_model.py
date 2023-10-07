@@ -1,5 +1,11 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
+
+
+class TokenData(BaseModel):
+    email: Optional[str] = None
+    exp: Optional[str] = None
+    iat: Optional[str] = None
 
 
 class Contact(BaseModel):
