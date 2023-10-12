@@ -1,21 +1,16 @@
-import asyncio, datetime, jwt
-from http.client import HTTPException
+import asyncio
+import datetime
+import jwt
 
-from fastapi import FastAPI, Depends, status, Response, Header, Security, requests
-from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer, OAuth2PasswordBearer
-from google.oauth2.id_token import verify_token
-from httpx import Auth
+from fastapi import FastAPI, Header
 from sqlalchemy import text
-from controllers.connect_db import SessionLocal, engine
-from models.contacts_model import ContactList, userData, userLogin, TokenData
-from models.response import Res
-from controllers.requests import success_response, error_response, not_found_response, bad_request_response, \
-    forbidden_response, internal_server_error_response, unauthorized_response
-from models.table_models import Contacts
-from typing import Annotated, Union, Any
-
 from trycourier import Courier
 from werkzeug.security import generate_password_hash, check_password_hash
+
+from controllers.connect_db import SessionLocal, engine
+from controllers.requests import success_response, error_response, unauthorized_response
+from models.contacts_model import ContactList, userData, userLogin
+from models.response import Res
 
 app = FastAPI()
 
@@ -44,11 +39,13 @@ def send_email(email, title, body, data):
 SECRET_KEY = "javainuse-secret-key"
 
 
-def verifyToken(token, secret_key, audience=None, issuer=None):
+def verifyToken(token, secret_key):
     token = token.replace("Bearer ", "")
     try:
         payload = jwt.decode(token, secret_key, algorithms=["HS256"])
-        print("Token payload:", payload)
+        if payload.get("exp") < datetime.datetime.utcnow().timestamp():
+            return unauthorized_response("Token is expired")
+        return payload
     except jwt.ExpiredSignatureError:
         return unauthorized_response("Token is expired")
     except jwt.InvalidTokenError:
@@ -73,7 +70,6 @@ def generateToken(payload, secret_key, expiration_minutes=30):
         secret_key,
         algorithm="HS256"
     )
-
     return token
 
 
