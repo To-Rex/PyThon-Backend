@@ -1,12 +1,10 @@
 import asyncio
 import datetime
 import jwt
-
-from fastapi import FastAPI, Header
+from fastapi import FastAPI, Header, Query
 from sqlalchemy import text
 from trycourier import Courier
 from werkzeug.security import generate_password_hash, check_password_hash
-
 from controllers.connect_db import SessionLocal, engine
 from controllers.requests import success_response, error_response, unauthorized_response
 from models.contacts_model import ContactList, userData, userLogin
@@ -154,9 +152,8 @@ async def add_contacts(contact: ContactList):
 def insert_contacts(contacts):
     try:
         session = SessionLocal()
-        insert_query = text(
-            'INSERT INTO contacts (display_name, given_name, middle_name, prefix, suffix, family_name, company, job_title, emails, phones, postal_addresses, avatar, birthday, android_account_type, android_account_type_raw, android_account_name) VALUES (:display_name, :given_name, :middle_name, :prefix, :suffix, :family_name, :company, :job_title, :emails, :phones, :postal_addresses, :avatar, :birthday, :android_account_type, :android_account_type_raw, :android_account_name)')
-        # insert_query = text('INSERT INTO contacts (display_name, given_name, middle_name, prefix, suffix, family_name, company, job_title, emails, phones, postal_addresses, birthday, android_account_type, android_account_type_raw, android_account_name) SELECT :display_name, :given_name, :middle_name, :prefix, :suffix, :family_name, :company, :job_title, :emails, :phones, :postal_addresses, :birthday, :android_account_type, :android_account_type_raw, :android_account_name WHERE NOT EXISTS (SELECT display_name, phones FROM contacts WHERE display_name = :display_name AND phones = :phones)')
+        #insert_query = text('INSERT INTO contacts (display_name, given_name, middle_name, prefix, suffix, family_name, company, job_title, emails, phones, postal_addresses, avatar, birthday, android_account_type, android_account_type_raw, android_account_name) VALUES (:display_name, :given_name, :middle_name, :prefix, :suffix, :family_name, :company, :job_title, :emails, :phones, :postal_addresses, :avatar, :birthday, :android_account_type, :android_account_type_raw, :android_account_name)')
+        insert_query = text('INSERT INTO contacts (display_name, given_name, middle_name, prefix, suffix, family_name, company, job_title, emails, phones, postal_addresses, birthday, android_account_type, android_account_type_raw, android_account_name) SELECT :display_name, :given_name, :middle_name, :prefix, :suffix, :family_name, :company, :job_title, :emails, :phones, :postal_addresses, :birthday, :android_account_type, :android_account_type_raw, :android_account_name WHERE NOT EXISTS (SELECT display_name, phones FROM contacts WHERE display_name = :display_name AND phones = :phones)')
         insert_data = [
             {
                 "display_name": item.display_name,
@@ -213,6 +210,32 @@ async def clear_db():
     connection.close()
     # return element size
     return success_response(size.rowcount + " rows deleted")
+
+
+@app.get("/")
+async def searchContacts(Authorization: str = Header(None), search: str = Query(None)):
+    token = verifyUserToken(Authorization)
+    if token:
+        return token
+    # try:
+    #     session = SessionLocal()
+    #     query = text(
+    #         "SELECT * FROM contacts WHERE display_name LIKE :search OR given_name LIKE :search OR middle_name LIKE :search OR prefix LIKE :search OR suffix LIKE :search OR family_name LIKE :search OR company LIKE :search OR job_title LIKE :search OR emails LIKE :search OR phones LIKE :search OR postal_addresses LIKE :search")
+    #     result = session.execute(query, {"search": f'%{search}%'})
+    #     contacts = [dict(row) for row in result]
+    #     return {"contacts": contacts, "size": len(contacts)}
+    # except Exception as e:
+    #     return error_response(str(e))
+    #Do not care about uppercase and lowercase letters when searching
+    try:
+        session = SessionLocal()
+        query = text(
+            "SELECT * FROM contacts WHERE LOWER(display_name) LIKE :search OR LOWER(given_name) LIKE :search OR LOWER(middle_name) LIKE :search OR LOWER(prefix) LIKE :search OR LOWER(suffix) LIKE :search OR LOWER(family_name) LIKE :search OR LOWER(company) LIKE :search OR LOWER(job_title) LIKE :search OR LOWER(emails) LIKE :search OR LOWER(phones) LIKE :search OR LOWER(postal_addresses) LIKE :search")
+        result = session.execute(query, {"search": f'%{search.lower()}%'})
+        contacts = [dict(row) for row in result]
+        return {"contacts": contacts, "size": len(contacts)}
+    except Exception as e:
+        return error_response(str(e))
 
 
 @app.get("/hello/{name}")
