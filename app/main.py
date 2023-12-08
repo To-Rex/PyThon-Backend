@@ -3,6 +3,7 @@ import datetime
 import jwt
 from fastapi import FastAPI, Header, Query
 from sqlalchemy import text
+from starlette.middleware.cors import CORSMiddleware
 from trycourier import Courier
 from werkzeug.security import generate_password_hash, check_password_hash
 from controllers.connect_db import SessionLocal, engine
@@ -11,6 +12,14 @@ from models.contacts_model import ContactList, userData, userLogin
 from models.response import Res
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # You can customize the allowed origins if needed
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods
+    allow_headers=["*"],  # Allow all headers
+)
 
 client = Courier(auth_token="pk_prod_J06Z6Y462V4ZD5Q382ST5EEGMVSF")
 

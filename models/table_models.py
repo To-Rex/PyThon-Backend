@@ -27,7 +27,6 @@ class Contacts(Base):
 
 class Users(Base):
     __tablename__ = "users"
-
     id = Column(Integer, primary_key=True, index=True)
     access_token = Column(String)
     id_token = Column(String)
