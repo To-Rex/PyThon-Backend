@@ -1,18 +1,116 @@
 import asyncio
 import datetime
 import jwt
+from authlib.integrations.base_client import OAuthError
 from fastapi import FastAPI, Header, Query
 from sqlalchemy import text
+from starlette.requests import Request
+from starlette.responses import RedirectResponse
 from trycourier import Courier
 from werkzeug.security import generate_password_hash, check_password_hash
 from controllers.connect_db import SessionLocal, engine
 from controllers.requests import success_response, error_response, unauthorized_response
 from models.contacts_model import ContactList, userData, userLogin
 from models.response import Res
+from fastapi.templating import Jinja2Templates
+from .config import CLIENT_ID, CLIENT_SECRET
+from starlette.middleware.sessions import SessionMiddleware
+from authlib.integrations.starlette_client import OAuth
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
+app.add_middleware(SessionMiddleware, secret_key="!secret")
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+oauth = OAuth()
+oauth.register(
+    name='google',
+    server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
+    client_id=CLIENT_ID,
+    client_secret=CLIENT_SECRET,
+    client_kwargs={
+        'scope': 'email openid profile',
+        'redirect_url': 'http://localhost:8000/auth'
+    }
+)
+
+# url: str = os.environ.get("https://lzsjhxeusmfxunxvkykm.supabase.co")
+# key: str = os.environ.get("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx6c2poeGV1c21meHVueHZreWttIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDIwNjc5MTIsImV4cCI6MjAxNzY0MzkxMn0.4u4UhsE-w89IeVav2Z-qdLc5ua6h3hy6pGxP49NUd48")
+# supa: Client = create_client(url, key)
+
+SECRET_KEY = "javainuse-secret-key"
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_DAYS = 30
 
 client = Courier(auth_token="pk_prod_J06Z6Y462V4ZD5Q382ST5EEGMVSF")
+
+# template = Jinja2Templates(directory="templates")
+#
+#
+# oauth = OAuth()
+# oauth.register(
+#     name='google',
+#     server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
+#     client_id=CLIENT_ID,
+#     client_secret=CLIENT_SECRET,
+#     client_kwargs={
+#         'scope': 'email openid profile',
+#         'redirect_url': 'http://localhost:8000/auth'
+#     }
+# )
+#
+#
+# templates = Jinja2Templates(directory="templates")
+#
+#
+# @app.get("/")
+# def index(request: Request):
+#     user = request.session.get('user')
+#     if user:
+#         return RedirectResponse('welcome')
+#
+#     return templates.TemplateResponse(
+#         name="home.html",
+#         context={"request": request}
+#     )
+#
+#
+# @app.get('/welcome')
+# def welcome(request: Request):
+#     user = request.session.get('user')
+#     if not user:
+#         return RedirectResponse('/')
+#     return templates.TemplateResponse(
+#         name='welcome.html',
+#         context={'request': request, 'user': user}
+#     )
+#
+#
+# @app.get("/login")
+# async def login(request: Request):
+#     url = request.url_for('auth')
+#     return await oauth.google.authorize_redirect(request, url)
+#
+#
+# @app.get('/auth')
+# async def auth(request: Request):
+#     try:
+#         token = await oauth.google.authorize_access_token(request)
+#     except OAuthError as e:
+#         return templates.TemplateResponse(
+#             name='error.html',
+#             context={'request': request, 'error': e.error}
+#         )
+#     user = token.get('userinfo')
+#     if user:
+#         request.session['user'] = dict(user)
+#     return RedirectResponse('welcome')
+#
+#
+# @app.get('/logout')
+# def logout(request: Request):
+#     request.session.pop('user')
+#     return RedirectResponse('/')
 
 
 def send_email(email, title, body, data):
@@ -32,9 +130,6 @@ def send_email(email, title, body, data):
     )
 
     return resp
-
-
-SECRET_KEY = "javainuse-secret-key"
 
 
 def verifyToken(token, secret_key):
@@ -239,20 +334,20 @@ async def searchContacts(Authorization: str = Header(None), search: str = Query(
         return error_response(str(e))
 
 
-@app.get("/{search}")
-async def searchContacts(Authorization: str = Header(None), search: str = Query(None)):
-    token = verifyUserToken(Authorization)
-    if token:
-        return token
-    try:
-        session = SessionLocal()
-        query = text(
-            "SELECT * FROM contacts WHERE display_name LIKE :search OR given_name LIKE :search OR middle_name LIKE :search OR prefix LIKE :search OR suffix LIKE :search OR family_name LIKE :search OR company LIKE :search OR job_title LIKE :search OR emails LIKE :search OR phones LIKE :search OR postal_addresses LIKE :search")
-        result = session.execute(query, {"search": f'%{search}%'})
-        contacts = [dict(row) for row in result]
-        return {"contacts": contacts, "size": len(contacts)}
-    except Exception as e:
-        return error_response(str(e))
+# @app.get("contacts/{search}")
+# async def searchContacts(Authorization: str = Header(None), search: str = Query(None)):
+#     token = verifyUserToken(Authorization)
+#     if token:
+#         return token
+#     try:
+#         session = SessionLocal()
+#         query = text(
+#             "SELECT * FROM contacts WHERE display_name LIKE :search OR given_name LIKE :search OR middle_name LIKE :search OR prefix LIKE :search OR suffix LIKE :search OR family_name LIKE :search OR company LIKE :search OR job_title LIKE :search OR emails LIKE :search OR phones LIKE :search OR postal_addresses LIKE :search")
+#         result = session.execute(query, {"search": f'%{search}%'})
+#         contacts = [dict(row) for row in result]
+#         return {"contacts": contacts, "size": len(contacts)}
+#     except Exception as e:
+#         return error_response(str(e))
 
 
 @app.get("/hello/{name}")
