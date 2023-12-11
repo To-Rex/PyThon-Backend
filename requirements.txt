@@ -10,4 +10,5 @@ alembic~=1.13.0
 uvicorn~=0.21.1
 python-multipart~=0.0.5
 psycopg2-binary~=2.8.6
+psycopg2~=2.8.6
 itsdangerous>=2.0.0
