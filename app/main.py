@@ -11,15 +11,6 @@ from models.contacts_model import ContactList, userData, userLogin
 from models.response import Res
 from starlette.middleware.sessions import SessionMiddleware
 
-from authlib.integrations.base_client import OAuthError
-from starlette.requests import Request
-from starlette.responses import RedirectResponse
-from fastapi.templating import Jinja2Templates
-from .config import CLIENT_ID, CLIENT_SECRET
-from authlib.integrations.starlette_client import OAuth
-from fastapi.staticfiles import StaticFiles
-
-
 app = FastAPI()
 app.add_middleware(SessionMiddleware, secret_key="!secret")
 
@@ -29,99 +20,8 @@ ACCESS_TOKEN_EXPIRE_DAYS = 30
 
 client = Courier(auth_token="pk_prod_J06Z6Y462V4ZD5Q382ST5EEGMVSF")
 
-# app.mount("/static", StaticFiles(directory="static"), name="static")
-# oauth = OAuth()
-# oauth.register(
-#     name='google',
-#     server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
-#     client_id=CLIENT_ID,
-#     client_secret=CLIENT_SECRET,
-#     client_kwargs={
-#         'scope': 'email openid profile',
-#         'redirect_url': 'http://localhost:8000/auth'
-#     }
-# )
-# template = Jinja2Templates(directory="templates")
-#
-#
-# oauth = OAuth()
-# oauth.register(
-#     name='google',
-#     server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
-#     client_id=CLIENT_ID,
-#     client_secret=CLIENT_SECRET,
-#     client_kwargs={
-#         'scope': 'email openid profile',
-#         'redirect_url': 'http://localhost:8000/auth'
-#     }
-# )
-#
-#
-# templates = Jinja2Templates(directory="templates")
-#
-#
-# @app.get("/")
-# def index(request: Request):
-#     user = request.session.get('user')
-#     if user:
-#         return RedirectResponse('welcome')
-#
-#     return templates.TemplateResponse(
-#         name="home.html",
-#         context={"request": request}
-#     )
-#
-#
-# @app.get('/welcome')
-# def welcome(request: Request):
-#     user = request.session.get('user')
-#     if not user:
-#         return RedirectResponse('/')
-#     return templates.TemplateResponse(
-#         name='welcome.html',
-#         context={'request': request, 'user': user}
-#     )
-#
-#
-# @app.get("/login")
-# async def login(request: Request):
-#     url = request.url_for('auth')
-#     return await oauth.google.authorize_redirect(request, url)
-#
-#
-# @app.get('/auth')
-# async def auth(request: Request):
-#     try:
-#         token = await oauth.google.authorize_access_token(request)
-#     except OAuthError as e:
-#         return templates.TemplateResponse(
-#             name='error.html',
-#             context={'request': request, 'error': e.error}
-#         )
-#     print('token', token)
-#     user = token.get('userinfo')
-#     if user:
-#         request.session['user'] = dict(user)
-#     return RedirectResponse('welcome')
-#
-#
-# @app.get('/logout')
-# def logout(request: Request):
-#     request.session.pop('user')
-#     return RedirectResponse('/')
-
-
-
-
-# url: str = os.environ.get("https://lzsjhxeusmfxunxvkykm.supabase.co")
-# key: str = os.environ.get("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx6c2poeGV1c21meHVueHZreWttIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDIwNjc5MTIsImV4cCI6MjAxNzY0MzkxMn0.4u4UhsE-w89IeVav2Z-qdLc5ua6h3hy6pGxP49NUd48")
-# supabase: Client = create_client(url, key)
-
-
 url: str = '542393991440-vna922ps3roohtu0rm1bkutduu8li9hr.apps.googleusercontent.com'
 key: str = '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'
-
-#supbase get contacts from db
 
 
 def send_email(email, title, body, data):
