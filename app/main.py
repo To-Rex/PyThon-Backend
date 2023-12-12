@@ -1,10 +1,9 @@
 import asyncio
 import datetime
 import jwt
-from fastapi import FastAPI, Header, Query
+from fastapi import FastAPI, Header, Query, Request, requests
 from sqlalchemy import text
 from trycourier import Courier
-from werkzeug.security import generate_password_hash, check_password_hash
 from controllers.connect_db import SessionLocal, engine
 from controllers.requests import success_response, error_response, unauthorized_response
 from models.contacts_model import ContactList, userData, userLogin
@@ -115,32 +114,32 @@ async def add_user(user: userData):
         return success_response(user.token)
 
 
-@app.post("/user/login", response_model=Res)
-async def login_user(login: userLogin):
-    if not login.email:
-        return error_response("Email is required")
-    if not login.password:
-        return error_response("Password is required")
-    try:
-        connection = engine.connect()
-        sql = text('SELECT * FROM users WHERE email = :email')
-        result = connection.execute(sql, email=login.email)
-        if result.rowcount > 0:
-            user = dict(result.fetchone())
-            if PasswordCheck(login.password, user['password']):
-                user['token'] = generateToken({"email": user['email'], "phone": user['phone']}, SECRET_KEY)
-                sql = text('UPDATE users SET token = :token WHERE email = :email')
-                connection.execute(sql, token=user['token'], email=user['email'])
-                connection.close()
-                return success_response(user['token'])
-            else:
-                connection.close()
-                return error_response("Invalid password")
-        else:
-            connection.close()
-            return error_response("User not found")
-    except Exception as e:
-        return error_response(str(e))
+# @app.post("/user/login", response_model=Res)
+# async def login_user(login: userLogin):
+#     if not login.email:
+#         return error_response("Email is required")
+#     if not login.password:
+#         return error_response("Password is required")
+#     try:
+#         connection = engine.connect()
+#         sql = text('SELECT * FROM users WHERE email = :email')
+#         result = connection.execute(sql, email=login.email)
+#         if result.rowcount > 0:
+#             user = dict(result.fetchone())
+#             if PasswordCheck(login.password, user['password']):
+#                 user['token'] = generateToken({"email": user['email'], "phone": user['phone']}, SECRET_KEY)
+#                 sql = text('UPDATE users SET token = :token WHERE email = :email')
+#                 connection.execute(sql, token=user['token'], email=user['email'])
+#                 connection.close()
+#                 return success_response(user['token'])
+#             else:
+#                 connection.close()
+#                 return error_response("Invalid password")
+#         else:
+#             connection.close()
+#             return error_response("User not found")
+#     except Exception as e:
+#         return error_response(str(e))
 
 
 @app.post("/contacts", response_model=Res)
