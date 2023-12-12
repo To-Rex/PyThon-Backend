@@ -10,8 +10,89 @@ Accept: application/json
 
 ###
 
-GET http://127.0.0.1:8081/contacts
+//login with google
+POST http://127.0.0.1:8000/user
 Accept: application/json
 Content-Type: application/json
+
+{
+    "access_token": "accessToken",
+    "id_token": "idToken",
+    "ids": "ids",
+    "phone": "+998995340313",
+    "email": "torex.amaki@gmail.com",
+    "password": "1234",
+    "name": "displayName",
+    "photo_url": "photoUrl",
+    "role": "users",
+    "region": "region",
+    "device": "android",
+    "created_at": "2023-07-15 00:29:30",
+    "updated_at": "2023-07-15 12:29:40"
+}
+
+###
+
+//add contact
+POST http://127.0.0.1:8000/contacts
+Accept: application/json
+Content-Type: application/json
+
+{
+  "contacts": [
+    {
+      "display_name": "John Doe",
+      "given_name": "John",
+      "middle_name": null,
+      "prefix": "Mr.",
+      "suffix": null,
+      "family_name": "Doe",
+      "company": "XYZ Corp",
+      "job_title": "Software Engineer",
+      "emails": "john.doe@example.com",
+      "phones": "123-456-7890",
+      "postal_addresses": "123 Main St, Cityville, USA",
+      "avatar": "https://example.com/avatar.jpg",
+      "birthday": "1990-01-01",
+      "android_account_type": "Google",
+      "android_account_type_raw": "com.google",
+      "android_account_name": "john.doe@gmail.com"
+    },
+    {
+      "display_name": "Jane Smith",
+      "given_name": "Jane",
+      "middle_name": null,
+      "prefix": "Ms.",
+      "suffix": null,
+      "family_name": "Smith",
+      "company": "ABC Inc",
+      "job_title": "Marketing Specialist",
+      "emails": "jane.smith@example.com",
+      "phones": "987-654-3210",
+      "postal_addresses": "456 Oak St, Townsville, USA",
+      "avatar": "https://example.com/avatar_jane.jpg",
+      "birthday": "1985-05-15",
+      "android_account_type": "Microsoft",
+      "android_account_type_raw": "com.microsoft",
+      "android_account_name": "jane.smith@hotmail.com"
+    }
+  ]
+}
+
+###
+
+//search contact
+GET http://127.0.0.1:8000/?search=Ja
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGhvbmUiOiIrOTk4OTUzNDAzMTMiLCJlbWFpbCI6InRvcmV4LmFtYWtpQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VycyIsInJlZ2lvbiI6InJlZ2lvbiIsImRldmljZSI6ImFuZHJvaWQiLCJjcmVhdGVkX2F0IjoiMjAyMy0wNy0xNSAwMDoyOTozMCIsInVwZGF0ZWRfYXQiOiIyMDIzLTA3LTE1I
+
+###
+
+//get all contacts
+GET http://127.0.0.1:8000/contacts
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGhvbmUiOiIrOTk4OTUzNDAzMTMiLCJlbWFpbCI6InRvcmV4LmFtYWtpQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VycyIsInJlZ2lvbiI6InJlZ2lvbiIsImRldmljZSI6ImFuZHJvaWQiLCJjcmVhdGVkX2F0IjoiMjAyMy0wNy0xNSAwMDoyOTozMCIsInVwZGF0ZWRfYXQiOiIyMDIzLTA3LTE1I
 
 ###

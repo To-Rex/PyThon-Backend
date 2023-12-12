@@ -11,6 +11,8 @@ from models.contacts_model import ContactList, userData, userLogin
 from models.response import Res
 from starlette.middleware.sessions import SessionMiddleware
 
+from serices.services import PasswordHash, PasswordCheck
+
 app = FastAPI()
 app.add_middleware(SessionMiddleware, secret_key="!secret")
 
@@ -75,14 +77,6 @@ def generateToken(payload, secret_key, expiration_minutes=30):
         algorithm="HS256"
     )
     return token
-
-
-def PasswordHash(password):
-    return generate_password_hash(password)
-
-
-def PasswordCheck(provided_password, hashed_password):
-    return check_password_hash(hashed_password, provided_password)
 
 
 @app.post("/user", response_model=Res)
