@@ -9,9 +9,7 @@ from controllers.requests import success_response, error_response, unauthorized_
 from models.contacts_model import ContactList, userData, userLogin
 from models.response import Res
 from starlette.middleware.sessions import SessionMiddleware
-
 from serices.services import PasswordHash, PasswordCheck
-
 app = FastAPI()
 app.add_middleware(SessionMiddleware, secret_key="!secret")
 
@@ -76,15 +74,6 @@ def generateToken(payload, secret_key, expiration_minutes=30):
         algorithm="HS256"
     )
     return token
-
-
-@app.middleware("http")
-async def add_cors_header(request, call_next):
-    response = await call_next(request)
-    response.headers["Access-Control-Allow-Origin"] = "*"
-    response.headers["Access-Control-Allow-Headers"] = "*"
-    response.headers["Access-Control-Allow-Methods"] = "*"
-    return response
 
 
 @app.post("/user", response_model=Res)
