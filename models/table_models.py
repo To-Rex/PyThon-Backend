@@ -43,5 +43,16 @@ class Users(Base):
     created_at = Column(String)
     updated_at = Column(String)
     token = Column(String)
+    verified = Column(String)
+
+
+class UserNames(Base):
+    __tablename__ = "usernames"
+    id = Column(Integer, primary_key=True, index=True)
+    username = Column(String)
+    user_id = Column(String)
+    created_at = Column(String)
+    updated_at = Column(String)
+
 
 
