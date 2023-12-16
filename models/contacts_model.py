@@ -47,6 +47,8 @@ class userData(BaseModel):
     created_at: str = None
     updated_at: str = None
     token: str = None
+    verified: bool = None
+    username: str = None
 
 
 class userLogin(BaseModel):

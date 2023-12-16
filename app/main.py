@@ -1,26 +1,24 @@
 import asyncio
-import datetime
-import jwt
-from fastapi import FastAPI, Header, Query, Request, requests
+from fastapi import FastAPI, Header, Query
 from sqlalchemy import text
 from trycourier import Courier
 from controllers.connect_db import SessionLocal, engine
 from controllers.requests import success_response, error_response, unauthorized_response
-from models.contacts_model import ContactList, userData, userLogin
+from models.contacts_model import ContactList, userData
 from models.response import Res
 from starlette.middleware.sessions import SessionMiddleware
-from serices.services import PasswordHash, PasswordCheck
+import firebase_admin
+from firebase_admin import credentials, auth
+
+
 app = FastAPI()
 app.add_middleware(SessionMiddleware, secret_key="!secret")
 
-SECRET_KEY = "javainuse-secret-key"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_DAYS = 30
 
 client = Courier(auth_token="pk_prod_J06Z6Y462V4ZD5Q382ST5EEGMVSF")
 
-url: str = '542393991440-vna922ps3roohtu0rm1bkutduu8li9hr.apps.googleusercontent.com'
-key: str = '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'
+cred = credentials.Certificate("controllers/keyFirebase.json")
+firebase_admin.initialize_app(cred)
 
 
 def send_email(email, title, body, data):
@@ -42,93 +40,21 @@ def send_email(email, title, body, data):
     return resp
 
 
-def verifyToken(token, secret_key):
-    token = token.replace("Bearer ", "")
-    try:
-        payload = jwt.decode(token, secret_key, algorithms=["HS256"])
-        if payload.get("exp") < datetime.datetime.utcnow().timestamp():
-            return unauthorized_response("Token is expired")
-        return payload
-    except jwt.ExpiredSignatureError:
-        return unauthorized_response("Token is expired")
-    except jwt.InvalidTokenError:
-        return unauthorized_response("Token is invalid")
-    except Exception as e:
-        return unauthorized_response(str(e))
+def get_user(uid):
+    user = auth.get_user(uid)
+    return user
 
 
 def verifyUserToken(token: str = Header(None)):
     if not token:
         return unauthorized_response("Token is required")
-
-    verifyToken(token, SECRET_KEY)
-    return None
-
-
-def generateToken(payload, secret_key, expiration_minutes=30):
-    expiration_time = datetime.datetime.utcnow() + datetime.timedelta(minutes=expiration_minutes)
-    token = jwt.encode({
-        "exp": expiration_time,
-        **payload},
-        secret_key,
-        algorithm="HS256"
-    )
-    return token
-
-
-@app.post("/user", response_model=Res)
-async def add_user(user: userData):
-    connection = engine.connect()
-    sql = text('SELECT * FROM users WHERE email = :email OR phone = :phone')
-    result = connection.execute(sql, email=user.email, phone=user.phone)
-    user.updated_at = datetime.datetime.now()
-    user.token = generateToken({"email": user.email, "phone": user.phone}, SECRET_KEY)
-    if result.rowcount > 0:
-        sql = text('UPDATE users SET updated_at = :updated_at, token = :token WHERE email = :email OR phone = :phone')
-        connection.execute(sql, updated_at=user.updated_at, token=user.token, email=user.email, phone=user.phone)
-        connection.close()
-        return success_response(user.token)
-    else:
-        user.blocked = False
-        user.password = PasswordHash(user.password)
-        user.created_at = user.updated_at
-        # user not exists
-        sql = text(
-            'INSERT INTO users (access_token, id_token, ids, phone, email, password, name, photo_url, blocked, role, region, device, created_at, updated_at, token) VALUES (:access_token, :id_token, :ids, :phone, :email, :password, :name, :photo_url, :blocked, :role, :region, :device, :created_at, :updated_at, :token)')
-        connection.execute(sql, access_token=user.access_token, id_token=user.id_token, ids=user.ids, phone=user.phone,
-                           email=user.email, password=user.password, name=user.name, photo_url=user.photo_url,
-                           blocked=user.blocked, role=user.role, region=user.region, device=user.device,
-                           created_at=user.created_at, updated_at=user.updated_at, token=user.token)
-        connection.close()
-        return success_response(user.token)
-
-
-@app.post("/user/login", response_model=Res)
-async def login_user(login: userLogin):
-    if not login.email:
-        return error_response("Email is required")
-    if not login.password:
-        return error_response("Password is required")
     try:
-        connection = engine.connect()
-        sql = text('SELECT * FROM users WHERE email = :email')
-        result = connection.execute(sql, email=login.email)
-        if result.rowcount > 0:
-            user = dict(result.fetchone())
-            if PasswordCheck(login.password, user['password']):
-                user['token'] = generateToken({"email": user['email'], "phone": user['phone']}, SECRET_KEY)
-                sql = text('UPDATE users SET token = :token WHERE email = :email')
-                connection.execute(sql, token=user['token'], email=user['email'])
-                connection.close()
-                return success_response(user['token'])
-            else:
-                connection.close()
-                return error_response("Invalid password")
+        if auth.get_user(token.replace("Bearer ", "")):
+            return None
         else:
-            connection.close()
-            return error_response("User not found")
+            return unauthorized_response("Token is invalid")
     except Exception as e:
-        return error_response(str(e))
+        return unauthorized_response(str(e))
 
 
 @app.post("/contacts", response_model=Res)
@@ -203,10 +129,7 @@ async def clear_db():
     sql = text('DELETE FROM contacts')
     size = connection.execute(sql)
     connection.execute(sql)
-    sql = text('DELETE FROM users')
-    connection.execute(sql)
     connection.close()
-    # return element size
     return success_response(size.rowcount + " rows deleted")
 
 
@@ -236,22 +159,56 @@ async def searchContacts(Authorization: str = Header(None), search: str = Query(
         return error_response(str(e))
 
 
-# @app.get("contacts/{search}")
-# async def searchContacts(Authorization: str = Header(None), search: str = Query(None)):
-#     token = verifyUserToken(Authorization)
-#     if token:
-#         return token
-#     try:
-#         session = SessionLocal()
-#         query = text(
-#             "SELECT * FROM contacts WHERE display_name LIKE :search OR given_name LIKE :search OR middle_name LIKE :search OR prefix LIKE :search OR suffix LIKE :search OR family_name LIKE :search OR company LIKE :search OR job_title LIKE :search OR emails LIKE :search OR phones LIKE :search OR postal_addresses LIKE :search")
-#         result = session.execute(query, {"search": f'%{search}%'})
-#         contacts = [dict(row) for row in result]
-#         return {"contacts": contacts, "size": len(contacts)}
-#     except Exception as e:
-#         return error_response(str(e))
-
-
 @app.get("/hello/{name}")
 async def say_hello(name: str):
     return {"message": f"Hello {name}"}
+
+
+@app.get("/getUsers")
+async def get_users():
+    all_users = auth.list_users()
+    return all_users
+
+
+@app.get("/getUsers/uid")
+async def get_users_uid():
+    all_users = auth.list_users()
+    lit_uid = []
+    for user in all_users.users:
+        lit_uid.append(user.uid)
+    return lit_uid
+
+
+@app.get("/getUsers/{uid}")
+async def get_user(uid: str):
+    print(uid)
+    user = auth.get_user(uid)
+    return user
+
+
+@app.post("/createUser")
+async def create_user(user: userData):
+    try:
+        user = auth.create_user(
+            email=user.email,
+            email_verified='true',
+            phone_number=user.phone,
+            password=user.password,
+            display_name=user.name,
+            photo_url=user.photo_url,
+            disabled=user.blocked,
+        )
+        auth.generate_email_verification_link(user.email)
+        return user
+    except Exception as e:
+        return error_response(str(e))
+
+
+
+
+
+
+
+
+
+

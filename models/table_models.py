@@ -25,34 +25,26 @@ class Contacts(Base):
     android_account_name = Column(String)
 
 
-class Users(Base):
-    __tablename__ = "users"
-    id = Column(Integer, primary_key=True, index=True)
-    access_token = Column(String)
-    id_token = Column(String)
-    ids = Column(String)
-    phone = Column(String)
-    email = Column(String)
-    password = Column(String)
-    name = Column(String)
-    photo_url = Column(String)
-    blocked = Column(String)
-    role = Column(String)
-    region = Column(String)
-    device = Column(String)
-    created_at = Column(String)
-    updated_at = Column(String)
-    token = Column(String)
-    verified = Column(String)
-
-
-class UserNames(Base):
-    __tablename__ = "usernames"
-    id = Column(Integer, primary_key=True, index=True)
-    username = Column(String)
-    user_id = Column(String)
-    created_at = Column(String)
-    updated_at = Column(String)
+# class Users(Base):
+#     __tablename__ = "users"
+#     id = Column(Integer, primary_key=True, index=True)
+#     access_token = Column(String)
+#     id_token = Column(String)
+#     ids = Column(String)
+#     phone = Column(String)
+#     email = Column(String)
+#     password = Column(String)
+#     name = Column(String)
+#     username = Column(String)
+#     photo_url = Column(String)
+#     blocked = Column(String)
+#     role = Column(String)
+#     region = Column(String)
+#     device = Column(String)
+#     created_at = Column(String)
+#     updated_at = Column(String)
+#     token = Column(String)
+#     verified = Column(String)
 
 
 
