@@ -1,5 +1,6 @@
 import asyncio
-from fastapi import FastAPI, Header, Query
+import boto3
+from fastapi import FastAPI, Header, Query, UploadFile, File
 from sqlalchemy import text
 from trycourier import Courier
 from controllers.connect_db import SessionLocal, engine
@@ -10,10 +11,10 @@ from starlette.middleware.sessions import SessionMiddleware
 import firebase_admin
 from firebase_admin import credentials, auth
 
+from serices.services import upload_to_s3, S3_ACCESS_KEY, S3_SECRET_KEY, S3_REGION
 
 app = FastAPI()
 app.add_middleware(SessionMiddleware, secret_key="!secret")
-
 
 client = Courier(auth_token="pk_prod_J06Z6Y462V4ZD5Q382ST5EEGMVSF")
 
@@ -204,11 +205,37 @@ async def create_user(user: userData):
         return error_response(str(e))
 
 
+S3_BUCKET_NAME = 'showcontact'
+s3_client = boto3.client('s3', region_name='ap-southeast-1')
 
 
 
+@app.post("/upload")
+async def upload_file(file: UploadFile = File(...)):
+    print(file.filename)
+    if not file.filename:
+        return error_response("No file provided")
+    try:
+        loop = asyncio.get_event_loop()
+        result = await loop.run_in_executor(None, lambda: upload_to_s3(file.file, S3_BUCKET_NAME, file.filename,
+                                                                      S3_ACCESS_KEY, S3_SECRET_KEY, S3_REGION))
+        if result:
+            return success_response(file.filename)
+        else:
+            return error_response("Request processed failed")
+    except Exception as e:
+        return error_response(str(e))
 
 
-
+@app.get("/download/{filename}")
+async def download_file(filename: str):
+    if not filename:
+        return error_response("No file provided")
+    try:
+        s3_key = f"{filename}"  # Customize the S3 key as needed
+        s3_url = f"https://{S3_BUCKET_NAME}.s3.{S3_REGION}.amazonaws.com/{s3_key}"
+        return {"message": "File uploaded successfully", "s3_url": s3_url}
+    except Exception as e:
+        return error_response(str(e))
 
 

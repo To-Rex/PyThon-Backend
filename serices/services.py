@@ -1,5 +1,8 @@
 from datetime import datetime
+
+import boto3
 from authlib.jose import jwt
+from botocore.exceptions import NoCredentialsError
 from fastapi import Header
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -50,3 +53,30 @@ def PasswordHash(password):
 
 def PasswordCheck(provided_password, hashed_password):
     return check_password_hash(hashed_password, provided_password)
+
+
+S3_BUCKET_NAME = 'showcontact'
+S3_ACCESS_KEY = 'AKIA46FYFR5PD64GIXGK'
+S3_SECRET_KEY = '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'
+S3_REGION = 'ap-southeast-1'
+
+def upload_to_s3(file, bucket_name, s3_key, aws_access_key, aws_secret_key, aws_region):
+    s3 = boto3.client('s3', aws_access_key_id=aws_access_key, aws_secret_access_key=aws_secret_key, region_name=aws_region)
+    try:
+        s3.upload_fileobj(file, bucket_name, s3_key)
+        return True
+    except FileNotFoundError:
+        return False
+    except NoCredentialsError:
+        return False
+
+
+def download_from_s3(bucket_name, s3_key, aws_access_key, aws_secret_key, aws_region):
+    s3 = boto3.client('s3', aws_access_key_id=aws_access_key, aws_secret_access_key=aws_secret_key, region_name=aws_region)
+    try:
+        s3.download_file(bucket_name, s3_key, s3_key)
+        return True
+    except FileNotFoundError:
+        return False
+    except NoCredentialsError:
+        return False
