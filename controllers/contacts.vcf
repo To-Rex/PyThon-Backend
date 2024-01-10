@@ -1,0 +1,1358 @@
+BEGIN:VCARD
+VERSION:3.0
+ADR;TYPE=WORK:;;123 Main St\, Cityville\, USA;;;;
+BDAY:1990-01-01
+EMAIL;TYPE=INTERNET:john.doe@example.com
+FN:John Doe
+N:Doe;John;;;
+ORG:X;Y;Z; ;C;o;r;p
+TEL;TYPE=CELL:123-456-7890
+TITLE:Software Engineer
+URL;TYPE=PREF:https://example.com/avatar.jpg
+X-ABADR:us
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABLABEL:_$!<HomePage>!$_
+X-ABSHOWAS:COMPANY
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+ADR;TYPE=WORK:;;456 Oak St\, Townsville\, USA;;;;
+BDAY:1985-05-15
+EMAIL;TYPE=INTERNET:jane.smith@example.com
+FN:Jane Smith
+N:Smith;Jane;;;
+ORG:A;B;C; ;I;n;c
+TEL;TYPE=CELL:987-654-3210
+TITLE:Marketing Specialist
+URL;TYPE=PREF:https://example.com/avatar_jane.jpg
+X-ABADR:us
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABLABEL:_$!<HomePage>!$_
+X-ABSHOWAS:COMPANY
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+ADR;TYPE=WORK:;;123 Main St\, Cityville\, USA;;;;
+BDAY:1990-01-01
+EMAIL;TYPE=INTERNET:john.doe@example.com
+FN:John Doe
+N:Doe;John;;;
+ORG:X;Y;Z; ;C;o;r;p
+TEL;TYPE=CELL:123-456-7890
+TITLE:Software Engineer
+URL;TYPE=PREF:https://example.com/avatar.jpg
+X-ABADR:us
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABLABEL:_$!<HomePage>!$_
+X-ABSHOWAS:COMPANY
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+ADR;TYPE=WORK:;;456 Oak St\, Townsville\, USA;;;;
+BDAY:1985-05-15
+EMAIL;TYPE=INTERNET:jane.smith@example.com
+FN:Jane Smith
+N:Smith;Jane;;;
+ORG:A;B;C; ;I;n;c
+TEL;TYPE=CELL:987-654-3210
+TITLE:Marketing Specialist
+URL;TYPE=PREF:https://example.com/avatar_jane.jpg
+X-ABADR:us
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABADR:
+X-ABLABEL:_$!<HomePage>!$_
+X-ABSHOWAS:COMPANY
+END:VCARD
+
+
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:; Wujw;;;
+FN: Wujw
+TEL;type=CELL;type=VOICE;type=pref:+998950667545
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;;;;
+FN:Apple Inc.
+ORG:Apple Inc.;
+TEL;type=MAIN;type=pref:1-800-MY-APPLE
+item1.ADR;type=WORK;type=pref:;;1 Infinite Loop;Cupertino;CA;95014;United States
+item1.X-ABADR:us
+item2.URL;type=pref:http://www.apple.com
+item2.X-ABLabel:_$!<HomePage>!$_
+X-ABShowAs:COMPANY
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;;;;
+TEL;type=pref:+998911507760
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:️;<TOXIR />;;;
+FN:<TOXIR /> ️
+item1.URL;type=pref:https://t.me/@id5093322471
+item1.X-ABLabel:Telegram
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Aliev;;;
+FN:Aliev
+TEL;type=CELL;type=VOICE;type=pref:+998 90 565 73 95
+item1.URL;type=pref:https://t.me/@idId(rawValue: 3717745)
+item1.X-ABLabel:Telegram
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:aka+;Ahmadjon;;;
+FN:Ahmadjon aka+
+TEL;type=CELL;type=VOICE;type=pref:+998931634600
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;ABDULLOH........;;;
+FN:ABDULLOH........
+TEL;type=CELL;type=VOICE;type=pref:+998999141452
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:IT;Abrorjon;aka;;
+FN:Abrorjon aka IT
+TEL;type=CELL;type=VOICE;type=pref:997952604
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Abduraxm+;;;
+FN:Abduraxm+
+TEL;type=CELL;type=VOICE;type=pref:+998905560244
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Murod;akam;;;
+FN:akam Murod
+TEL;type=CELL;type=VOICE;type=pref:+998999929269
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;AbdurahmonAka+;;;
+FN:AbdurahmonAka+
+TEL;type=CELL;type=VOICE;type=pref:+998903074601
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:astrum;Abdulaziz;;;
+FN:Abdulaziz astrum
+TEL;type=CELL;type=VOICE;type=pref:902091210
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Qoʻshni;Asadbek;;;
+FN:Asadbek Qoʻshni
+TEL;type=CELL;type=VOICE;type=pref:+998958112494
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Azimjon astrum;;;
+FN:Azimjon astrum
+TEL;type=CELL;type=VOICE;type=pref:914449517
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Abdulaziz;;;
+FN:Abdulaziz
+TEL;type=CELL;type=VOICE;type=pref:+998937882628
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Afzalbek;;;
+FN:Afzalbek
+TEL;type=CELL;type=VOICE;type=pref:+998911479904
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Haro;Anna;;;
+FN:Anna Haro
+NICKNAME:Annie
+EMAIL;type=INTERNET;type=HOME;type=pref:anna-haro@mac.com
+TEL;type=HOME;type=VOICE;type=pref:555-522-8243
+item1.ADR;type=HOME;type=pref:;;1001  Leavenworth Street;Sausalito;CA;94965;USA
+item1.X-ABADR:us
+BDAY:1985-08-29
+item2.X-ABDATE;type=pref:2002-02-15
+item2.X-ABLabel:_$!<Anniversary>!$_
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Abdulloh_kurs;;;
+FN:Abdulloh_kurs
+TEL;type=CELL;type=VOICE;type=pref:+998901517623
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Ajoyibot;;;
+FN:Ajoyibot
+TEL;type=CELL;type=VOICE;type=pref:+998712076663
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Avazxon+;;;
+FN:Avazxon+
+TEL;type=CELL;type=VOICE;type=pref:+998912002823
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:aka+;Abbosxon;;;
+FN:Abbosxon aka+
+TEL;type=CELL;type=VOICE;type=pref:+998905087179
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Abdusamad ++;;;
+FN:Abdusamad ++
+TEL;type=pref:+998977515747
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Aziz aka payme;;;
+FN:Aziz aka payme
+TEL;type=CELL;type=VOICE;type=pref:+998 99-353-97-43
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Aziza Opa Astrum. Data;;;
+FN:Aziza Opa Astrum. Data
+TEL;type=pref:+998911251704
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Abdulloh Aka Avantage;;;
+FN:Abdulloh Aka Avantage
+TEL;type=pref:977759355
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Klent;Azim Oka;;;
+FN:Azim Oka Klent
+TEL;type=pref:915492155
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Nukus;Azamat Aka Klent;;;
+FN:Azamat Aka Klent Nukus
+TEL;type=pref:913837747
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Azizbek;;;
+FN:Azizbek
+TEL;type=CELL;type=VOICE;type=pref:+998902601135
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Jasurbek;Abduvali;;;
+FN:Abduvali Jasurbek
+TEL;type=CELL;type=VOICE;type=pref:+998 91 466 75 10
+item1.URL;type=pref:https://t.me/@id1363414523
+item1.X-ABLabel:Telegram
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Burxon aka;;;
+FN:Burxon aka
+TEL;type=CELL;type=VOICE;type=pref:+998 97 548 36 38
+item1.URL;type=pref:https://t.me/@idId(rawValue: 979238094)
+item1.X-ABLabel:Telegram
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:aka;Bekmurod;;;
+FN:Bekmurod aka
+TEL;type=CELL;type=VOICE;type=pref:+998902329598
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Baxroms;;;
+FN:Baxroms
+TEL;type=CELL;type=VOICE;type=pref:+998972056703
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Bunyod Aka Ish;;;
+FN:Bunyod Aka Ish
+TEL;type=pref:991004123
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Baxodir Aka Set;;;
+FN:Baxodir Aka Set
+TEL;type=CELL;type=VOICE;type=pref:+998 90-212-52-50
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;B;;;
+FN:B
+TEL;type=CELL;type=VOICE;type=pref:9311580233
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Chuvrindi;;;
+FN:Chuvrindi
+TEL;type=CELL;type=VOICE;type=pref:+998915341142
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Ckromni;;;
+FN:Ckromni
+item1.URL;type=pref:https://t.me/@id6441408683
+item1.X-ABLabel:Telegram
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Xaydarov;Dilshodjon;;;
+FN:Dilshodjon Xaydarov
+TEL;type=CELL;type=VOICE;type=pref:99-534-03-13
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Dostonuuuuuuuuuu;;;
+FN:Dostonuuuuuuuuuu
+TEL;type=CELL;type=VOICE;type=pref:+998991242777
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Davlatim;;;
+FN:Davlatim
+TEL;type=CELL;type=VOICE;type=pref:+998993639133
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Taylor;David;;;
+FN:David Taylor
+TEL;type=HOME;type=VOICE;type=pref:555-610-6679
+item1.ADR;type=HOME;type=pref:;;1747 Steuart Street;Tiburon;CA;94920;USA
+item1.X-ABADR:us
+BDAY:1998-06-15
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Davronbek+;;;
+FN:Davronbek+
+TEL;type=CELL;type=VOICE;type=pref:+998905067752
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Haydarov;Dilshodjon;;;
+FN:Dilshodjon Haydarov
+EMAIL;type=INTERNET;type=HOME;type=pref:dev.dilshodjon@gmail.com
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Evelina;;;
+FN:Evelina
+TEL;type=CELL;type=VOICE;type=pref:+79183285931
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Erta Tax;;;
+FN:Erta Tax
+TEL;type=pref:941085980
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Fayzulla tog'am;;;
+FN:Fayzulla tog'am
+TEL;type=CELL;type=VOICE;type=pref:+998 91 145 40 39
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:aka+;Furqat;;;
+FN:Furqat aka+
+TEL;type=CELL;type=VOICE;type=pref:+998916985800
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:togʻam;Fayzulla;;;
+FN:Fayzulla togʻam
+TEL;type=CELL;type=VOICE;type=pref:+998911454039
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Farhod Akam;;;
+FN:Farhod Akam
+TEL;type=pref:+998911431994
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Fayzulla Tog'a Ish;;;
+FN:Fayzulla Tog'a Ish
+TEL;type=pref:+998910100112
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Fotima Opa Avantage;;;
+FN:Fotima Opa Avantage
+TEL;type=pref:994036336
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Fergana Ish;;;
+FN:Fergana Ish
+TEL;type=pref:+998913280088
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Farğona viloyati Yozyavon tumani Yangibõston MFY Azizova Dildora;;;
+FN:Farğona viloyati Yozyavon tumani Yangibõston MFY Azizova Dildora
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Klent;Feruza Opa;;;
+FN:Feruza Opa Klent
+TEL;type=pref:+998913110271
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Goʻzal;;;
+FN:Goʻzal
+TEL;type=CELL;type=VOICE;type=pref:+998900115382
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;GʻiyosS;;;
+FN:GʻiyosS
+TEL;type=CELL;type=VOICE;type=pref:+998908506382
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;G'ayratjon Ttu;;;
+FN:G'ayratjon Ttu
+TEL;type=pref:947381310
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Zakroff;Hank;M.;;
+FN:Hank M. Zakroff
+ORG:Financial Services Inc.;
+TITLE:Portfolio Manager
+EMAIL;type=INTERNET;type=WORK;type=pref:hank-zakroff@mac.com
+TEL;type=WORK;type=VOICE;type=pref:(555) 766-4823
+TEL;type=OTHER;type=VOICE:(707) 555-1854
+item1.ADR;type=WORK;type=pref:;;1741 Kearny Street;San Rafael;CA;94901;
+item1.X-ABADR:us
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:aka usta;Hakim;;;
+FN:Hakim aka usta
+TEL;type=CELL;type=VOICE;type=pref:+998911551098
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:aka astru;Hasanboy;;;
+FN:Hasanboy aka astru
+TEL;type=CELL;type=VOICE;type=pref:+998889082010
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Hudayoraka;;;
+FN:Hudayoraka
+TEL;type=CELL;type=VOICE;type=pref:901519918
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Holmonjon;;;
+FN:Holmonjon
+TEL;type=CELL;type=VOICE;type=pref:+998339180103
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Hushnud Aka Kv;;;
+FN:Hushnud Aka Kv
+TEL;type=pref:+998908178221
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Hoshimjon Aka Ishx;;;
+FN:Hoshimjon Aka Ishx
+TEL;type=pref:+998998355147
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;ItPark ukaxon;;;
+FN:ItPark ukaxon
+TEL;type=pref:+998992807576
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;It Park ........;;;
+FN:It Park ........
+TEL;type=pref:+998949340003
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Astrum;Isomiddin;;;
+FN:Isomiddin Astrum
+TEL;type=CELL;type=VOICE;type=pref:+998932199580
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;ilyosbek_U;;;
+FN:ilyosbek_U
+TEL;type=CELL;type=VOICE;type=pref:990870526
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Aka Yoshlar;Izzat;;;
+FN:Izzat Aka Yoshlar
+TEL;type=CELL;type=VOICE;type=pref:+998977005861
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:astrum;Iqrorjon;;;
+FN:Iqrorjon astrum
+TEL;type=CELL;type=VOICE;type=pref:+998903605293
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:austrum;Ismoiljon;;;
+FN:Ismoiljon austrum
+TEL;type=CELL;type=VOICE;type=pref:990065218
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Iphone7 256;;;
+FN:Iphone7 256
+TEL;type=pref:998141616
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:yaypan;it;firma;;
+FN:it firma yaypan
+TEL;type=CELL;type=VOICE;type=pref:+998990009627
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Islombek Aka;;;
+FN:Islombek Aka
+TEL;type=CELL;type=VOICE;type=pref:91-111-44-71
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Ish;;;
+FN:Ish
+TEL;type=CELL;type=VOICE;type=pref:+998974300192
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;ishshshshsh;;;
+FN:ishshshshsh
+TEL;type=CELL;type=VOICE;type=pref:+998 90-765-04-01
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:aka astrum;ismoil;;;
+FN:ismoil aka astrum
+TEL;type=CELL;type=VOICE;type=pref:995319577
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Astrium;Ismoil;;;
+FN:Ismoil Astrium
+TEL;type=CELL;type=VOICE;type=pref:907591226
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Icloud_unlock_iphonei;;;
+FN:Icloud_unlock_iphonei
+TEL;type=CELL;type=VOICE;type=pref:+12813171939
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Ixtiyor Sinf;;;
+FN:Ixtiyor Sinf
+TEL;type=pref:917363565
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Ishllllllllllllllllllllllllla;;;
+FN:Ishllllllllllllllllllllllllla
+TEL;type=pref:935199642
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Iiiishshshsh;;;
+FN:Iiiishshshsh
+TEL;type=pref:+998941769959
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Islombek Aka. Yoshlar;;;
+FN:Islombek Aka. Yoshlar
+TEL;type=pref:905440000
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Javoir;;;
+FN:Javoir
+TEL;type=CELL;type=VOICE;type=pref:330901970
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:aka;Jalol;;;
+FN:Jalol aka
+TEL;type=CELL;type=VOICE;type=pref:993555597
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Aka Astrum;Javohir;;;
+FN:Javohir Aka Astrum
+TEL;type=CELL;type=VOICE;type=pref:+998944048458
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:SMM+;Jasurbek;;;
+FN:Jasurbek SMM+
+TEL;type=CELL;type=VOICE;type=pref:+998940307123
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Appleseed;John;;;
+FN:John Appleseed
+EMAIL;type=INTERNET;type=WORK;type=pref:John-Appleseed@mac.com
+TEL;type=CELL;type=VOICE;type=pref:888-555-5512
+TEL;type=HOME;type=VOICE:888-555-1212
+item1.ADR;type=WORK;type=pref:;;3494 Kuhl Avenue;Atlanta;GA;30303;USA
+item1.X-ABADR:us
+item2.ADR;type=HOME:;;1234 Laurel Street;Atlanta;GA;30303;USA
+item2.X-ABADR:us
+BDAY:1980-06-22
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Jannatim;;;
+FN:Jannatim
+TEL;type=CELL;type=VOICE;type=pref:+998993698970
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;jamoliddinni Izlab;;;
+FN:jamoliddinni Izlab
+TEL;type=pref:997700047
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Bell;Kate;;;
+FN:Kate Bell
+ORG:Creative Consulting;
+TITLE:Producer
+EMAIL;type=INTERNET;type=WORK;type=pref:kate-bell@mac.com
+TEL;type=CELL;type=VOICE;type=pref:(555) 564-8583
+TEL;type=MAIN:(415) 555-3695
+item1.ADR;type=WORK;type=pref:;;165 Davis Street;Hillsborough;CA;94010;
+item1.X-ABADR:us
+item2.URL;type=pref:www.icloud.com
+item2.X-ABLabel:_$!<HomePage>!$_
+BDAY:1978-01-20
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Kundr;;;
+FN:Kundr
+TEL;type=pref:990409124
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Klent e;;;
+FN:Klent e
+TEL;type=CELL;type=VOICE;type=pref:+998906881899
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Klent Y;;;
+FN:Klent Y
+TEL;type=pref:+998977040170
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Klent Yyyy;;;
+FN:Klent Yyyy
+TEL;type=pref:+998909253909
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;MuhammadAli Aka Jiyan;;;
+FN:MuhammadAli Aka Jiyan
+TEL;type=pref:999991823
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Muhammadiy astrum;;;
+FN:Muhammadiy astrum
+TEL;type=pref:+998900554888
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Macbook;Malika;;;
+FN:Malika Macbook
+TEL;type=CELL;type=VOICE;type=pref:909932000
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:astrum;Muslimbek;;;
+FN:Muslimbek astrum
+TEL;type=CELL;type=VOICE;type=pref:+998881328082
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:opam;Maftuna;;;
+FN:Maftuna opam
+TEL;type=CELL;type=VOICE;type=pref:+998336068987
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Muhammadali+;;;
+FN:Muhammadali+
+TEL;type=CELL;type=VOICE;type=pref:+998911492592
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:doston;mana;;;
+FN:mana doston
+TEL;type=CELL;type=VOICE;type=pref:+998902867282
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Astru;MuhammadSaid;;;
+FN:MuhammadSaid Astru
+TEL;type=CELL;type=VOICE;type=pref:+998979407550
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Murod Akam —;;;
+FN:Murod Akam —
+TEL;type=pref:+998994039202
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Marufjon Astrum. Data;;;
+FN:Marufjon Astrum. Data
+TEL;type=pref:+998999986711
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;MuhammadSaid astrum;;;
+FN:MuhammadSaid astrum
+TEL;type=pref:+998330010074
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Manish;;;
+FN:Manish
+TEL;type=CELL;type=VOICE;type=pref:+998931580233
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Nurmuhammad;;;
+FN:Nurmuhammad
+TEL;type=CELL;type=VOICE;type=pref:+998916655756
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Nilufar Opa Mentor;;;
+FN:Nilufar Opa Mentor
+TEL;type=CELL;type=VOICE;type=pref:33-169-55-25
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Nozimjon;;;
+FN:Nozimjon
+TEL;type=CELL;type=VOICE;type=pref:+998 94-883-00-70
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Zebo;Opa;;;
+FN:Opa Zebo
+TEL;type=CELL;type=VOICE;type=pref:908250637
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:togʻam;Orif;;;
+FN:Orif togʻam
+TEL;type=CELL;type=VOICE;type=pref:+998903937476
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:aka+;Oybek;;;
+FN:Oybek aka+
+TEL;type=CELL;type=VOICE;type=pref:+998997220392
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Qishloq Xojalik Vaziriligi;;;
+FN:Qishloq Xojalik Vaziriligi
+TEL;type=pref:+998336949494
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Sherdor Kv;;;
+FN:Sherdor Kv
+TEL;type=pref:904860096
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:astrum;Soibjon;;;
+FN:Soibjon astrum
+TEL;type=CELL;type=VOICE;type=pref:+998911423323
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;simmi;;;
+FN:simmi
+TEL;type=CELL;type=VOICE;type=pref:+998901507996
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Shavkatjon;;;
+FN:Shavkatjon
+TEL;type=CELL;type=VOICE;type=pref:+998911480357
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Aka Ast;Sirojiddin;;;
+FN:Sirojiddin Aka Ast
+TEL;type=CELL;type=VOICE;type=pref:+998970348467
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Astrum;Shaxzod;;;
+FN:Shaxzod Astrum
+TEL;type=CELL;type=VOICE;type=pref:+998977061443
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;sardor3;;;
+FN:sardor3
+TEL;type=CELL;type=VOICE;type=pref:+998900085277
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:aka;Shagʻzod;;;
+FN:Shagʻzod aka
+TEL;type=CELL;type=VOICE;type=pref:+998905074495
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:opam;Sayyora;;;
+FN:Sayyora opam
+TEL;type=CELL;type=VOICE;type=pref:+998910050441
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:degan;Shagʻzod;;;
+FN:Shagʻzod degan
+TEL;type=CELL;type=VOICE;type=pref:+998942222049
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:aka dom;shoxjaxon;;;
+FN:shoxjaxon aka dom
+TEL;type=CELL;type=VOICE;type=pref:+998974158383
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Sardor;;;
+FN:Sardor
+TEL;type=CELL;type=VOICE;type=pref:+998909430128
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Aka Mentor;Sarvar;;;
+FN:Sarvar Aka Mentor
+TEL;type=CELL;type=VOICE;type=pref:+998972018082
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:raxbar;sinf;;;
+FN:sinf raxbar
+TEL;type=CELL;type=VOICE;type=pref:+998903074175
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Shaxnoza Opa Kv;;;
+FN:Shaxnoza Opa Kv
+TEL;type=pref:+998930449505
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;SamTaxi;;;
+FN:SamTaxi
+TEL;type=pref:+998994248150
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Sam Taxi;;;
+FN:Sam Taxi
+TEL;type=CELL;type=VOICE;type=pref:+998 99 424 81 50
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;SamTaxiis;;;
+FN:SamTaxiis
+TEL;type=pref:991121041
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Boboxonov;Sardor;;;
+FN:Sardor Boboxonov
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Sobirhon oka;;;
+FN:Sobirhon oka
+TEL;type=CELL;type=VOICE;type=pref:+998 90 325 15 75
+item1.URL;type=pref:https://t.me/@id1334533
+item1.X-ABLabel:Telegram
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Sardor Aka;;;
+FN:Sardor Aka
+TEL;type=pref:909261232
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Sevara;;;
+FN:Sevara
+item1.URL;type=pref:https://t.me/@id1406942078
+item1.X-ABLabel:Telegram
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Taxi1;;;
+FN:Taxi1
+TEL;type=CELL;type=VOICE;type=pref:+998 90-307-91-61
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Taxi;;;
+FN:Taxi
+TEL;type=CELL;type=VOICE;type=pref:+998 93-102-90-28
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:B;Toxirjon;;;
+FN:Toxirjon B
+TEL;type=CELL;type=VOICE;type=pref:+998996901756
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Ta;;;
+FN:Ta
+TEL;type=pref:940089498
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Taxiiis;;;
+FN:Taxiiis
+TEL;type=CELL;type=VOICE;type=pref:+998 91-693-15-14
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Turg’un Aka;;;
+FN:Turg’un Aka
+TEL;type=pref:+998935602290
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Ttu;;;
+FN:Ttu
+TEL;type=CELL;type=VOICE;type=pref:33-246-80-40
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Tttttt;;;
+FN:Tttttt
+TEL;type=CELL;type=VOICE;type=pref:+998 98-271-15-25
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Texnik Congress;;;
+FN:Texnik Congress
+TEL;type=pref:995489468
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Toga;;;
+FN:Toga
+TEL;type=CELL;type=VOICE;type=pref:99-466-19-39
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Uztelekom;;;
+FN:Uztelekom
+TEL;type=CELL;type=VOICE;type=pref:+998996000124
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;UzTeleCom Yaypan;;;
+FN:UzTeleCom Yaypan
+TEL;type=pref:993620705
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:akablb;Ulugʻnek;;;
+FN:Ulugʻnek akablb
+TEL;type=CELL;type=VOICE;type=pref:+998979605009
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:aka;Umarxon;;;
+FN:Umarxon aka
+TEL;type=CELL;type=VOICE;type=pref:+998905628899
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:soch;Ulama;;;
+FN:Ulama soch
+TEL;type=CELL;type=VOICE;type=pref:+998918331636
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;UzTeleCom;;;
+FN:UzTeleCom
+TEL;type=pref:994821188
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:astrum;ulugʻbek;;;
+FN:ulugʻbek astrum
+TEL;type=CELL;type=VOICE;type=pref:938848100
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;uis;;;
+FN:uis
+TEL;type=pref:+998555062202
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:Aka;Xoji;;;
+FN:Xoji Aka
+TEL;type=CELL;type=VOICE;type=pref:916937178
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Xitoy Cons;;;
+FN:Xitoy Cons
+TEL;type=CELL;type=VOICE;type=pref:+998953300066
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Xoji Akbar Aka TTU ;;;
+FN:Xoji Akbar Aka TTU
+TEL;type=CELL;type=VOICE;type=pref:99-997-54-25
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Xolmurod Xidirov;;;
+FN:Xolmurod Xidirov
+TEL;type=CELL;type=VOICE;type=pref:+998 88-333-38-80
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:aka;yusufxon;;;
+FN:yusufxon aka
+TEL;type=CELL;type=VOICE;type=pref:+998908577273
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:angor;yangi;;;
+FN:yangi angor
+TEL;type=CELL;type=VOICE;type=pref:+998977851204
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;ziyohiddin;;;
+FN:ziyohiddin
+TEL;type=CELL;type=VOICE;type=pref:+998916998059
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;ZohirjonS;;;
+FN:ZohirjonS
+TEL;type=CELL;type=VOICE;type=pref:+998916820959
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Zilola;;;
+FN:Zilola
+TEL;type=CELL;type=VOICE;type=pref:997943504
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Ziyodulla;;;
+FN:Ziyodulla
+TEL;type=CELL;type=VOICE;type=pref:+998991989750
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;ZohirjonS;;;
+FN:ZohirjonS
+TEL;type=pref:+998990913099
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Zokir Aka;;;
+FN:Zokir Aka
+TEL;type=pref:+998903065610
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Zuhra Opam;;;
+FN:Zuhra Opam
+TEL;type=pref:997868206
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Zebo''!!!!!!;;;
+FN:Zebo''!!!!!!
+X-SOCIALPROFILE:x-apple:6512234350
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Ziroo;;;
+FN:Ziroo
+item1.URL;type=pref:https://t.me/@id6842512137
+item1.X-ABLabel:Telegram
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Zohirjon Aka Sartarosh;;;
+FN:Zohirjon Aka Sartarosh
+TEL;type=pref:+998999911806
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Ольга;;;
+FN:Ольга
+TEL;type=CELL;type=VOICE;type=pref:+998 90 830 73 53
+item1.URL;type=pref:https://t.me/@id6213414772
+item1.X-ABLabel:Telegram
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;Турапова Азиза Усмановна;;;
+FN:Турапова Азиза Усмановна
+TEL;type=CELL;type=VOICE;type=pref:+998 90 720 20 80
+item1.URL;type=pref:https://t.me/@id998725084
+item1.X-ABLabel:Telegram
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.7.2//EN
+N:;🌼;;;
+FN:🌼
+item1.URL;type=pref:https://t.me/@id6088067478
+item1.X-ABLabel:Telegram
+END:VCARD
+

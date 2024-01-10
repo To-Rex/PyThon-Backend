@@ -1,5 +1,8 @@
 import asyncio
+import json
+
 import boto3
+import vobject
 from fastapi import FastAPI, Header, Query, UploadFile, File
 from sqlalchemy import text
 from trycourier import Courier
@@ -58,13 +61,22 @@ def verifyUserToken(token: str = Header(None)):
         return unauthorized_response(str(e))
 
 
+def add_contacts_from_excel(exselFile, contacts):
+    with open(exselFile, 'w') as f:
+        f.write('Name Prefix\tGiven Name\tMiddle Name\tFamily Name\tFull Name\tName Suffix\tPhonetic Given Name\tPhonetic Middle Name\tPhonetic Family Name\tJob Title\tDepartment Name\tOrganization Name\tPhonetic Organization Name\tPostal Addresses\tEmail Addresses\tURL Addresses\tPhone Numbers\tSocial Profiles\tBirthday\tDates\tNote\tIM Addresses\n')
+        for contact in contacts:
+            f.write(f'{contact.prefix}\t{contact.given_name}\t{contact.middle_name}\t{contact.family_name}\t{contact.display_name}\t{contact.suffix}\t\t\t\t{contact.job_title}\t\t{contact.company}\t\t{contact.postal_addresses}\t{contact.emails}\t\t{contact.phones}\t\t{contact.birthday}\t\t\t\t\n')
+
+
 @app.post("/contacts", response_model=Res)
 async def add_contacts(contact: ContactList):
     if not contact.contacts:
         return error_response("No contacts provided")
+    #add_contacts_from_excel("controllers/contacts.xlsx", contact.contacts)
     try:
         loop = asyncio.get_event_loop()
         result = await loop.run_in_executor(None, lambda: insert_contacts(contact.contacts))
+
         if result:
             return success_response(contact)
         else:
@@ -209,7 +221,6 @@ S3_BUCKET_NAME = 'showcontact'
 s3_client = boto3.client('s3', region_name='ap-southeast-1')
 
 
-
 @app.post("/upload")
 async def upload_file(file: UploadFile = File(...)):
     print(file.filename)
@@ -218,7 +229,7 @@ async def upload_file(file: UploadFile = File(...)):
     try:
         loop = asyncio.get_event_loop()
         result = await loop.run_in_executor(None, lambda: upload_to_s3(file.file, S3_BUCKET_NAME, file.filename,
-                                                                      S3_ACCESS_KEY, S3_SECRET_KEY, S3_REGION))
+                                                                       S3_ACCESS_KEY, S3_SECRET_KEY, S3_REGION))
         if result:
             return success_response(file.filename)
         else:
@@ -237,5 +248,3 @@ async def download_file(filename: str):
         return {"message": "File uploaded successfully", "s3_url": s3_url}
     except Exception as e:
         return error_response(str(e))
-
-
